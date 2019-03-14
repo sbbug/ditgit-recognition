@@ -38,6 +38,25 @@ def getData(file):
 
     return np.array(imgDatas),np.array(imgLabels)
 
+def getImg(file):
+
+    # 将图像对应的标签数据转换为向量
+
+    # 获取图像数据
+    file_img = open(file)
+    line = file_img.readline()
+
+    img_data = ''
+    while line:
+        line = line.replace('\n', '')  # 去掉字符串换行符
+        img_data = img_data + line  # 将每个文件里读取的数据拼接成一个字符串，方便转为向量
+        line = file_img.readline()
+
+    # 将字符串列表转换为浮点数列表
+    img_data = map(float, img_data)
+    img_data = list(img_data)
+
+    return np.array(img_data)
 
 
 if __name__=="__main__":
